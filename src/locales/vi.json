@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "projects": "Dự án",
+    "stack": "Công nghệ",
+    "contact": "Liên hệ"
+  },
+  "home": {
+    "title": "Lập trình viên Full Stack",
+    "subtitle": "Xây dựng trải nghiệm số",
+    "cta": "Xem Dự án"
+  },
+  "about": {
+    "title": "Về tôi",
+    "experience": "Kinh nghiệm"
+  },
+  "projects": {
+    "title": "Dự án",
+    "viewProject": "Xem Dự án",
+    "featured": "Nổi bật"
+  },
+  "stack": {
+    "title": "Công nghệ sử dụng",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Cơ sở dữ liệu",
+      "devops": "DevOps",
+      "tools": "Công cụ"
+    }
+  },
+  "contact": {
+    "title": "Liên hệ",
+    "name": "Họ tên",
+    "email": "Email",
+    "message": "Tin nhắn",
+    "send": "Gửi tin nhắn",
+    "success": "Gửi tin nhắn thành công!",
+    "error": "Gửi tin nhắn thất bại"
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Có lỗi xảy ra",
+    "present": "Hiện tại"
+  }
+}

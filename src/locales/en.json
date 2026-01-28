@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "stack": "Stack",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "Full Stack Developer",
+    "subtitle": "Building digital experiences",
+    "cta": "View Projects"
+  },
+  "about": {
+    "title": "About Me",
+    "experience": "Experience"
+  },
+  "projects": {
+    "title": "Projects",
+    "viewProject": "View Project",
+    "featured": "Featured"
+  },
+  "stack": {
+    "title": "Tech Stack",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Database",
+      "devops": "DevOps",
+      "tools": "Tools"
+    }
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message",
+    "success": "Message sent successfully!",
+    "error": "Failed to send message"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "present": "Present"
+  }
+}

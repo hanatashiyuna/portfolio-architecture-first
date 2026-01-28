@@ -1,20 +1,11 @@
-import { Link, useParams } from '@tanstack/react-router';
+import { Link, useLoaderData } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
-import { useProject } from '@/hooks/useProjects';
+import type { Project } from '@/types';
 
 const ProjectDetail = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { slug } = useParams({ from: '/projects/$slug' } as any) as { slug: string };
   const { t } = useTranslation();
-  const { data: project, isLoading } = useProject(slug);
-
-  if (isLoading) {
-    return (
-      <div className="px-6 md:px-12 lg:px-24 py-16">
-        <p className="text-muted-foreground">{t('common.loading')}</p>
-      </div>
-    );
-  }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { project } = useLoaderData({ from: '/projects/$slug' } as any) as { project: Project };
 
   if (!project) {
     return (

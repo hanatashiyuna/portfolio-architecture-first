@@ -3,6 +3,7 @@ import { useAppStore } from '@/store/appStore';
 import { Moon, Sun, Menu } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useRouterState } from '@tanstack/react-router';
 import {
   Sheet,
   SheetContent,
@@ -16,6 +17,8 @@ export const Header = () => {
   const { language, setLanguage, theme, setTheme } = useAppStore();
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
+  const routerState = useRouterState();
+  const currentPath = routerState.location.pathname;
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
@@ -51,7 +54,7 @@ export const Header = () => {
             onClick?.();
           }}
           className={`editorial-link text-sm tracking-wide uppercase cursor-pointer ${
-            window.location.pathname === link.to 
+            currentPath === link.to 
               ? 'text-foreground font-semibold' 
               : 'text-muted-foreground font-normal'
           }`}

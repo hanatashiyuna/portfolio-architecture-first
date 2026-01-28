@@ -8,12 +8,12 @@ const Home = () => {
     <div className="min-h-[80vh] flex flex-col justify-center px-6 md:px-12 lg:px-24">
       <div className="max-w-5xl">
         <p className="text-muted-foreground mb-4 tracking-wide uppercase text-xs">
-          Available for work — 2024
+          Open to contracts — 2024
         </p>
         
         <h1 className="editorial-display text-foreground mb-8 text-balance">
-          I build thoughtful<br />
-          <em className="text-muted-foreground">digital products</em>
+          Software that ships.<br />
+          <em className="text-muted-foreground">No frameworks for frameworks' sake.</em>
         </h1>
         
         <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 mt-12">

@@ -38,37 +38,37 @@ export const SkillPhilosophy = ({ stack: _stack }: SkillPhilosophyProps) => {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       {categories.map((category, index) => (
-        <div key={category.title} className="grid grid-cols-12 gap-4 py-4 border-t border-border/50 first:border-t-0">
-          <div className="col-span-12 lg:col-span-5">
-            <div className="flex items-baseline gap-3 mb-1">
-              <span className="text-xs text-muted-foreground/50 tabular-nums">
-                {String(index + 1).padStart(2, '0')}.
-              </span>
-              <h3 className="font-display text-lg text-foreground">
-                {category.title}
-              </h3>
-            </div>
-            <p className="text-muted-foreground text-sm leading-relaxed pl-7">
-              {category.description}
-            </p>
+        <div 
+          key={category.title} 
+          className={`${index > 0 ? 'pt-10 border-t border-border' : ''}`}
+        >
+          {/* Category Header */}
+          <div className="flex items-baseline gap-4 mb-3">
+            <span className="text-xs text-muted-foreground/60 tabular-nums font-medium">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <h3 className="font-display text-2xl lg:text-3xl text-foreground tracking-tight">
+              {category.title}
+            </h3>
           </div>
+          
+          {/* Description */}
+          <p className="text-muted-foreground/70 text-sm leading-relaxed mb-5 pl-8 max-w-md">
+            {category.description}
+          </p>
 
-          <div className="col-span-12 lg:col-span-7 flex items-center">
-            <div className="flex flex-wrap gap-x-6 gap-y-1 pl-7 lg:pl-0">
-              {category.tools.map((tool, toolIndex) => (
-                <span
-                  key={tool}
-                  className="text-foreground text-base"
-                >
-                  {tool}
-                  {toolIndex < category.tools.length - 1 && (
-                    <span className="text-muted-foreground/30 ml-6">·</span>
-                  )}
-                </span>
-              ))}
-            </div>
+          {/* Tools as chips */}
+          <div className="flex flex-wrap gap-2 pl-8">
+            {category.tools.map((tool) => (
+              <span
+                key={tool}
+                className="inline-flex items-center px-3 py-1.5 text-sm font-medium text-foreground bg-muted/60 rounded-md border border-border/50"
+              >
+                {tool}
+              </span>
+            ))}
           </div>
         </div>
       ))}

@@ -13,42 +13,58 @@ export const ExperienceTimeline = ({ experiences }: ExperienceTimelineProps) => 
     return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
   };
 
+  const isActive = (exp: Experience) => !exp.endDate;
+
   return (
-    <div className="relative">
-      {/* Vertical line */}
-      <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-border" />
+    <div className="relative pl-8">
+      <div className="timeline-line" />
 
-      <div className="space-y-8">
-        {experiences.map((exp, index) => (
-          <div key={exp.id} className="relative pl-12">
-            {/* Timeline dot */}
-            <div className="absolute left-2 top-2 w-4 h-4 rounded-full bg-primary border-2 border-background" />
+      <div className="space-y-12">
+        {experiences.map((exp) => (
+          <div key={exp.id} className="relative">
+            <div className={`timeline-dot ${isActive(exp) ? 'timeline-dot-active' : ''}`} />
 
-            {/* Content card */}
-            <div className="bg-card border border-border rounded-lg p-4">
-              <div className="flex items-start justify-between mb-2">
-                <div>
-                  <h3 className="font-semibold text-foreground">{exp.position}</h3>
-                  <p className="text-muted-foreground">{exp.company}</p>
-                </div>
-                <span className="text-sm text-muted-foreground">
-                  {formatDate(exp.startDate)} - {exp.endDate ? formatDate(exp.endDate) : t('common.present')}
-                </span>
+            <div className="grid grid-cols-12 gap-4">
+              <div className="col-span-3 lg:col-span-2">
+                <p className="text-xs text-muted-foreground uppercase tracking-wide">
+                  {formatDate(exp.startDate)}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  {exp.endDate ? formatDate(exp.endDate) : t('common.present')}
+                </p>
               </div>
-              <p className="text-sm text-muted-foreground mb-3">{exp.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {exp.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="text-xs px-2 py-1 bg-secondary text-secondary-foreground rounded"
-                  >
-                    {tech}
-                  </span>
-                ))}
+
+              <div className="col-span-9 lg:col-span-10">
+                <h3 className="font-display text-xl text-foreground mb-1">
+                  {exp.position}
+                </h3>
+                <p className="text-muted-foreground text-sm mb-3">
+                  {exp.company}
+                </p>
+                <p className="text-foreground/80 text-sm leading-relaxed mb-4">
+                  {exp.description}
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {exp.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="text-xs text-muted-foreground"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="relative mt-12">
+        <div className="timeline-dot" />
+        <p className="text-xs text-muted-foreground uppercase tracking-wide pl-4">
+          2023 — Started
+        </p>
       </div>
     </div>
   );

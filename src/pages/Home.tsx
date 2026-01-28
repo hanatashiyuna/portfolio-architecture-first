@@ -1,22 +1,41 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@/components/ui/button';
 
 const Home = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="container mx-auto px-4 py-16">
-      <div className="max-w-2xl mx-auto text-center">
-        <h1 className="text-4xl font-bold text-foreground mb-4">
-          {t('home.title')}
-        </h1>
-        <p className="text-xl text-muted-foreground mb-8">
-          {t('home.subtitle')}
+    <div className="min-h-[80vh] flex flex-col justify-center px-6 md:px-12 lg:px-24">
+      <div className="max-w-5xl">
+        <p className="text-muted-foreground mb-4 tracking-wide uppercase text-xs">
+          Available for work — 2024
         </p>
-        <Button asChild>
-          <Link to="/projects">{t('home.cta')}</Link>
-        </Button>
+        
+        <h1 className="editorial-display text-foreground mb-8 text-balance">
+          I build thoughtful<br />
+          <em className="text-muted-foreground">digital products</em>
+        </h1>
+        
+        <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 mt-12">
+          <Link 
+            to="/projects" 
+            className="editorial-link text-foreground text-lg"
+          >
+            Selected work →
+          </Link>
+          <Link 
+            to="/about" 
+            className="editorial-link text-muted-foreground text-lg"
+          >
+            About me
+          </Link>
+        </div>
+      </div>
+      
+      <div className="absolute bottom-12 right-12 hidden lg:block">
+        <p className="text-xs text-muted-foreground tracking-wide uppercase">
+          Scroll
+        </p>
       </div>
     </div>
   );

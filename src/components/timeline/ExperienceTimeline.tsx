@@ -110,11 +110,15 @@ export const ExperienceTimeline = ({ experiences }: ExperienceTimelineProps) => 
 
         {/* Narrative ending */}
         <div className="grid grid-cols-[120px_24px_1fr] gap-x-4">
-          <div />
-          <div className="relative flex justify-center">
-            <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/20 mt-1.5" />
+          <div className="text-right pt-0.5">
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              2022
+            </p>
           </div>
-          <p className="text-sm text-muted-foreground/60 italic font-display">
+          <div className="relative flex justify-center">
+            <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground mt-1.5" />
+          </div>
+          <p className="text-sm text-muted-foreground italic font-display">
             Where it all began — curiosity, late nights, and a lot of Stack Overflow.
           </p>
         </div>

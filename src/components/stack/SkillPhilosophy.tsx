@@ -11,19 +11,24 @@ interface TechCategory {
 export const SkillPhilosophy = ({ stack: _stack }: SkillPhilosophyProps) => {
   const categories: TechCategory[] = [
     {
-      title: 'Backend & Data',
-      description: 'Schema-first design, type safety, and performance-aware data modeling.',
-      tools: ['TypeScript', 'PostgreSQL', 'MongoDB'],
-    },
-    {
       title: 'Frontend',
       description: 'Component-driven architecture with minimal abstraction and predictable state flow.',
-      tools: ['React', 'Tailwind CSS', 'Node.js'],
+      tools: ['React', 'NextJS', 'Tailwind CSS', 'TanStack'],
+    },
+    {
+      title: 'Backend & Data',
+      description: 'Schema-first design, type safety, and performance-aware data modeling.',
+      tools: ['Node.js', 'Laravel', 'MySQL', 'MongoDB'],
     },
     {
       title: 'DevOps & Delivery',
       description: 'Reproducible environments and stable deployment pipelines.',
-      tools: ['Docker', 'AWS', 'Git'],
+      tools: ['Docker', 'Git'],
+    },
+    {
+      title: 'Ecosystem & Tools',
+      description: 'Supporting libraries and tools.',
+      tools: ['Shadcn/UI', 'Zustand', 'Zod'],
     },
     {
       title: 'Learning & Exploration',

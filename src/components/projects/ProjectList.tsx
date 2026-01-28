@@ -21,23 +21,23 @@ export const ProjectList = ({ projects }: ProjectListProps) => {
             params={{ slug: project.slug } as any}
             className={`project-item-refined group cursor-pointer grid grid-cols-12 gap-4 ${paddingVariant} transition-all duration-500 ease-out hover:bg-muted/20`}
           >
-            <div className="col-span-1 text-muted-foreground/30 text-xs tabular-nums pt-1 transition-colors duration-500">
+            <div className="col-span-1 text-muted-foreground/50 text-xs tabular-nums pt-1 transition-colors duration-500">
               {String(index + 1).padStart(2, '0')}
             </div>
 
             <div className="col-span-7 lg:col-span-5 flex items-baseline gap-3">
-              <h2 className="font-display text-2xl lg:text-3xl text-foreground group-hover:text-foreground/70 transition-colors duration-500">
+              <h2 className="font-display text-2xl lg:text-3xl text-foreground group-hover:text-muted-foreground transition-colors duration-500">
                 {project.title}
               </h2>
               <ArrowUpRight 
                 size={18} 
-                className="text-muted-foreground/0 group-hover:text-muted-foreground/50 transition-all duration-500 -translate-x-1 group-hover:translate-x-0 translate-y-1 group-hover:translate-y-0" 
+                className="text-muted-foreground/0 group-hover:text-muted-foreground transition-all duration-500 -translate-x-1 group-hover:translate-x-0 translate-y-1 group-hover:translate-y-0" 
                 strokeWidth={1.5}
               />
             </div>
 
             <div className="col-span-4 lg:col-span-3 hidden sm:flex items-center">
-              <p className="text-muted-foreground/60 text-sm leading-relaxed group-hover:text-muted-foreground/40 transition-colors duration-500">
+              <p className="text-muted-foreground text-sm leading-relaxed group-hover:text-muted-foreground/70 transition-colors duration-500">
                 {project.description}
               </p>
             </div>
@@ -46,9 +46,9 @@ export const ProjectList = ({ projects }: ProjectListProps) => {
               {project.technologies.slice(0, 3).map((tech, techIndex) => (
                 <span
                   key={tech}
-                  className="text-xs text-muted-foreground/35 group-hover:text-muted-foreground/25 transition-colors duration-500"
+                  className="text-xs text-muted-foreground/70 group-hover:text-muted-foreground/50 transition-colors duration-500"
                 >
-                  {tech}{techIndex < Math.min(project.technologies.length, 3) - 1 && <span className="ml-3 text-border/50">·</span>}
+                  {tech}{techIndex < Math.min(project.technologies.length, 3) - 1 && <span className="ml-3 text-muted-foreground/30">·</span>}
                 </span>
               ))}
             </div>

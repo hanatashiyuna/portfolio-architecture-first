@@ -1,4 +1,3 @@
-import { Link, useRouterState } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '@/store/appStore';
 import { Moon, Sun, Menu } from 'lucide-react';
@@ -15,8 +14,6 @@ import {
 export const Header = () => {
   const { t, i18n } = useTranslation();
   const { language, setLanguage, theme, setTheme } = useAppStore();
-  const routerState = useRouterState();
-  const pathname = routerState.location.pathname;
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -35,27 +32,32 @@ export const Header = () => {
   };
 
   const navLinks = [
-    { to: '/about' as const, label: t('nav.about') },
-    { to: '/projects' as const, label: t('nav.projects') },
-    { to: '/stack' as const, label: t('nav.stack') },
-    { to: '/contact' as const, label: t('nav.contact') },
+    { to: '/about', label: t('nav.about') },
+    { to: '/projects', label: t('nav.projects') },
+    { to: '/stack', label: t('nav.stack') },
+    { to: '/contact', label: t('nav.contact') },
   ];
 
   const NavLinks = ({ onClick }: { onClick?: () => void }) => (
     <>
       {navLinks.map((link) => (
-        <Link
+        <a
           key={link.to}
-          to={link.to}
-          onClick={onClick}
-          className={`editorial-link text-sm tracking-wide uppercase ${
-            pathname === link.to 
+          href={link.to}
+          onClick={(e) => {
+            e.preventDefault();
+            window.history.pushState({}, '', link.to);
+            window.dispatchEvent(new PopStateEvent('popstate'));
+            onClick?.();
+          }}
+          className={`editorial-link text-sm tracking-wide uppercase cursor-pointer ${
+            window.location.pathname === link.to 
               ? 'text-foreground' 
               : 'text-muted-foreground'
           }`}
         >
           {link.label}
-        </Link>
+        </a>
       ))}
     </>
   );
@@ -63,12 +65,17 @@ export const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
       <div className="flex items-center justify-between px-6 md:px-12 lg:px-24 py-6">
-        <Link 
-          to="/" 
-          className="font-display text-xl text-foreground hover:text-muted-foreground transition-colors"
+        <a 
+          href="/"
+          onClick={(e) => {
+            e.preventDefault();
+            window.history.pushState({}, '', '/');
+            window.dispatchEvent(new PopStateEvent('popstate'));
+          }}
+          className="font-display text-xl text-foreground hover:text-muted-foreground transition-colors cursor-pointer"
         >
           Portfolio
-        </Link>
+        </a>
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">

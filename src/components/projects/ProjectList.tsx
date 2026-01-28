@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from '@tanstack/react-router';
 import type { Project } from '@/types';
 
 interface ProjectListProps {
@@ -11,7 +11,9 @@ export const ProjectList = ({ projects }: ProjectListProps) => {
       {projects.map((project, index) => (
         <Link
           key={project.id}
-          to={`/projects/${project.slug}`}
+          to="/projects/$slug"
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          params={{ slug: project.slug } as any}
           className="project-item group cursor-pointer"
         >
           <div className="col-span-1 text-muted-foreground text-sm">

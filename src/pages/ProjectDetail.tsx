@@ -1,11 +1,12 @@
-import { useParams, Link } from 'react-router-dom';
+import { Link, useParams } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { useProject } from '@/hooks/useProjects';
 
 const ProjectDetail = () => {
-  const { slug } = useParams<{ slug: string }>();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { slug } = useParams({ from: '/projects/$slug' } as any) as { slug: string };
   const { t } = useTranslation();
-  const { data: project, isLoading } = useProject(slug || '');
+  const { data: project, isLoading } = useProject(slug);
 
   if (isLoading) {
     return (

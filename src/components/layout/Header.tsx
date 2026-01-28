@@ -1,11 +1,12 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useRouterState } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '@/store/appStore';
 
 export const Header = () => {
   const { t, i18n } = useTranslation();
   const { language, setLanguage } = useAppStore();
-  const location = useLocation();
+  const routerState = useRouterState();
+  const pathname = routerState.location.pathname;
 
   const toggleLanguage = () => {
     const newLang = language === 'en' ? 'vi' : 'en';
@@ -14,10 +15,10 @@ export const Header = () => {
   };
 
   const navLinks = [
-    { to: '/about', label: t('nav.about') },
-    { to: '/projects', label: t('nav.projects') },
-    { to: '/stack', label: t('nav.stack') },
-    { to: '/contact', label: t('nav.contact') },
+    { to: '/about' as const, label: t('nav.about') },
+    { to: '/projects' as const, label: t('nav.projects') },
+    { to: '/stack' as const, label: t('nav.stack') },
+    { to: '/contact' as const, label: t('nav.contact') },
   ];
 
   return (
@@ -36,7 +37,7 @@ export const Header = () => {
               key={link.to}
               to={link.to}
               className={`editorial-link text-sm tracking-wide uppercase ${
-                location.pathname === link.to 
+                pathname === link.to 
                   ? 'text-foreground' 
                   : 'text-muted-foreground'
               }`}

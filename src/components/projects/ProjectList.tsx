@@ -8,53 +8,52 @@ interface ProjectListProps {
 
 export const ProjectList = ({ projects }: ProjectListProps) => {
   return (
-    <div className="divide-y divide-border/50">
-      {projects.map((project, index) => {
-        // Subtle vertical rhythm variation
-        const paddingVariant = index % 3 === 0 ? 'py-10' : index % 3 === 1 ? 'py-8' : 'py-9';
-        
-        return (
-          <Link
-            key={project.id}
-            to="/projects/$slug"
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            params={{ slug: project.slug } as any}
-            className={`project-item-refined group cursor-pointer grid grid-cols-12 gap-4 ${paddingVariant} transition-all duration-500 ease-out hover:bg-muted/20`}
-          >
-            <div className="col-span-1 text-muted-foreground/50 text-xs tabular-nums pt-1 transition-colors duration-500">
-              {String(index + 1).padStart(2, '0')}
-            </div>
+    <div className="divide-y divide-border">
+      {projects.map((project, index) => (
+        <Link
+          key={project.id}
+          to="/projects/$slug"
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          params={{ slug: project.slug } as any}
+          className="group cursor-pointer grid grid-cols-12 gap-6 py-8 transition-colors duration-300 hover:bg-muted/30"
+        >
+          {/* Index number */}
+          <div className="col-span-1 text-muted-foreground text-xs tabular-nums pt-2">
+            {String(index + 1).padStart(2, '0')}
+          </div>
 
-            <div className="col-span-7 lg:col-span-5 flex items-baseline gap-3">
-              <h2 className="font-display text-2xl lg:text-3xl text-foreground group-hover:text-muted-foreground transition-colors duration-500">
-                {project.title}
-              </h2>
-              <ArrowUpRight 
-                size={18} 
-                className="text-muted-foreground/0 group-hover:text-muted-foreground transition-all duration-500 -translate-x-1 group-hover:translate-x-0 translate-y-1 group-hover:translate-y-0" 
-                strokeWidth={1.5}
-              />
-            </div>
+          {/* Title */}
+          <div className="col-span-11 lg:col-span-5 flex items-baseline gap-3">
+            <h2 className="font-display text-3xl lg:text-4xl font-medium text-foreground group-hover:text-foreground/80 transition-colors duration-300">
+              {project.title}
+            </h2>
+            <ArrowUpRight 
+              size={20} 
+              className="text-foreground/0 group-hover:text-foreground/60 transition-all duration-300 -translate-x-1 group-hover:translate-x-0 translate-y-1 group-hover:translate-y-0" 
+              strokeWidth={1.5}
+            />
+          </div>
 
-            <div className="col-span-4 lg:col-span-3 hidden sm:flex items-center">
-              <p className="text-muted-foreground text-sm leading-relaxed group-hover:text-muted-foreground/70 transition-colors duration-500">
-                {project.description}
-              </p>
-            </div>
+          {/* Description */}
+          <div className="col-span-11 lg:col-span-3 lg:col-start-7 hidden sm:flex items-center ml-auto lg:ml-0">
+            <p className="text-foreground/70 text-sm leading-relaxed max-w-[280px]">
+              {project.description}
+            </p>
+          </div>
 
-            <div className="col-span-3 hidden lg:flex flex-wrap gap-x-3 gap-y-1 justify-end items-center">
-              {project.technologies.slice(0, 3).map((tech, techIndex) => (
-                <span
-                  key={tech}
-                  className="text-xs text-muted-foreground/70 group-hover:text-muted-foreground/50 transition-colors duration-500"
-                >
-                  {tech}{techIndex < Math.min(project.technologies.length, 3) - 1 && <span className="ml-3 text-muted-foreground/30">·</span>}
-                </span>
-              ))}
-            </div>
-          </Link>
-        );
-      })}
+          {/* Tech stack */}
+          <div className="col-span-3 hidden lg:flex flex-wrap gap-2 justify-end items-center">
+            {project.technologies.slice(0, 3).map((tech) => (
+              <span
+                key={tech}
+                className="text-xs text-muted-foreground px-2 py-0.5 bg-muted/50 rounded"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </Link>
+      ))}
     </div>
   );
 };

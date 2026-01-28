@@ -15,22 +15,22 @@ export const SkillPhilosophy = ({ stack }: SkillPhilosophyProps) => {
   const philosophies: PhilosophyGroup[] = [
     {
       title: 'Thinking',
-      description: 'Tools for designing systems and solving problems before writing code.',
+      description: 'Type systems catch bugs before runtime. Schema design determines query performance.',
       tools: ['TypeScript', 'PostgreSQL', 'MongoDB'],
     },
     {
       title: 'Building',
-      description: 'The craft of creating interfaces that feel natural and responsive.',
+      description: 'Component boundaries matter. CSS-in-JS adds complexity I rarely need.',
       tools: ['React', 'Tailwind CSS', 'Node.js'],
     },
     {
       title: 'Shipping',
-      description: 'Infrastructure that makes deployment boring and reliable.',
+      description: 'If deploys are scary, the pipeline is broken. Containers make environments reproducible.',
       tools: ['Docker', 'AWS', 'Git'],
     },
     {
       title: 'Learning',
-      description: 'Currently exploring and adding to the toolkit.',
+      description: 'Scripting, data work, ML basics. Not production-ready yet.',
       tools: ['Python'],
     },
   ];

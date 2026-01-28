@@ -14,12 +14,12 @@ const About = () => {
         </p>
         
         <h1 className="editorial-large text-foreground mb-12 max-w-2xl text-balance">
-          Developer focused on building products that balance craft with pragmatism.
+          I pick the boring solution until boring stops working.
         </h1>
 
         <div className="prose prose-lg text-muted-foreground mb-20 max-w-2xl">
           <p className="leading-relaxed">
-            I believe good software is invisible—it gets out of the way and lets people do what they came to do. I write code that's meant to be read, maintained, and eventually replaced.
+            Most decisions come down to trade-offs: speed vs. correctness, flexibility vs. simplicity, now vs. later. I optimize for deletion—code that's easy to throw away when requirements change.
           </p>
         </div>
       </div>

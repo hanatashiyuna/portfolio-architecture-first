@@ -24,36 +24,30 @@ export const ExperienceTimeline = ({ experiences }: ExperienceTimelineProps) => 
           <div key={exp.id} className="relative">
             <div className={`timeline-dot ${isActive(exp) ? 'timeline-dot-active' : ''}`} />
 
-            <div className="grid grid-cols-12 gap-4">
-              <div className="col-span-3 lg:col-span-2">
-                <p className="text-xs text-muted-foreground uppercase tracking-wide">
-                  {formatDate(exp.startDate)}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {exp.endDate ? formatDate(exp.endDate) : t('common.present')}
-                </p>
-              </div>
-
-              <div className="col-span-9 lg:col-span-10">
-                <h3 className="font-display text-xl text-foreground mb-1">
+            <div>
+              <div className="flex items-baseline gap-3 mb-1">
+                <h3 className="font-display text-xl text-foreground">
                   {exp.position}
                 </h3>
-                <p className="text-muted-foreground text-sm mb-3">
-                  {exp.company}
-                </p>
-                <p className="text-foreground/80 text-sm leading-relaxed mb-4">
-                  {exp.description}
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  {exp.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-xs text-muted-foreground"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+                <span className="text-xs text-muted-foreground">
+                  {formatDate(exp.startDate)} — {exp.endDate ? formatDate(exp.endDate) : t('common.present')}
+                </span>
+              </div>
+              <p className="text-muted-foreground text-sm mb-3">
+                {exp.company}
+              </p>
+              <p className="text-foreground/80 text-sm leading-relaxed mb-4">
+                {exp.description}
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {exp.technologies.map((tech) => (
+                  <span
+                    key={tech}
+                    className="text-xs text-muted-foreground"
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
@@ -62,7 +56,7 @@ export const ExperienceTimeline = ({ experiences }: ExperienceTimelineProps) => 
 
       <div className="relative mt-12">
         <div className="timeline-dot" />
-        <p className="text-xs text-muted-foreground uppercase tracking-wide pl-4">
+        <p className="text-xs text-muted-foreground uppercase tracking-wide">
           2023 — Started
         </p>
       </div>

@@ -1,26 +1,27 @@
 import { useTranslation } from 'react-i18next';
 import { useProjects } from '@/hooks/useProjects';
-import { ProjectCard } from '@/components/projects/ProjectCard';
+import { ProjectList } from '@/components/projects/ProjectList';
 
 const Projects = () => {
   const { t } = useTranslation();
   const { data: projects, isLoading } = useProjects();
 
   return (
-    <div className="container mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold text-foreground mb-8">{t('projects.title')}</h1>
-      
+    <div className="px-6 md:px-12 lg:px-24 py-16">
+      <div className="flex items-baseline justify-between mb-16">
+        <h1 className="font-display text-xl text-foreground">
+          {t('projects.title')}
+        </h1>
+        <p className="text-xs text-muted-foreground uppercase tracking-wide">
+          {projects?.length || 0} projects
+        </p>
+      </div>
+
       {isLoading ? (
         <p className="text-muted-foreground">{t('common.loading')}</p>
       ) : projects ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </div>
-      ) : (
-        <p className="text-muted-foreground">{t('common.error')}</p>
-      )}
+        <ProjectList projects={projects} />
+      ) : null}
     </div>
   );
 };

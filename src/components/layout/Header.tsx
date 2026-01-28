@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '@/store/appStore';
-import { Button } from '@/components/ui/button';
 
 export const Header = () => {
   const { t, i18n } = useTranslation();
   const { language, setLanguage } = useAppStore();
+  const location = useLocation();
 
   const toggleLanguage = () => {
     const newLang = language === 'en' ? 'vi' : 'en';
@@ -14,7 +14,6 @@ export const Header = () => {
   };
 
   const navLinks = [
-    { to: '/', label: t('nav.home') },
     { to: '/about', label: t('nav.about') },
     { to: '/projects', label: t('nav.projects') },
     { to: '/stack', label: t('nav.stack') },
@@ -22,24 +21,36 @@ export const Header = () => {
   ];
 
   return (
-    <header className="border-b border-border bg-background sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <Link to="/" className="text-xl font-bold text-foreground">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
+      <div className="flex items-center justify-between px-6 md:px-12 lg:px-24 py-6">
+        <Link 
+          to="/" 
+          className="font-display text-xl text-foreground hover:text-muted-foreground transition-colors"
+        >
           Portfolio
         </Link>
-        <nav className="flex items-center gap-6">
+        
+        <nav className="flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className={`editorial-link text-sm tracking-wide uppercase ${
+                location.pathname === link.to 
+                  ? 'text-foreground' 
+                  : 'text-muted-foreground'
+              }`}
             >
               {link.label}
             </Link>
           ))}
-          <Button variant="outline" size="sm" onClick={toggleLanguage}>
-            {language.toUpperCase()}
-          </Button>
+          
+          <button 
+            onClick={toggleLanguage}
+            className="text-xs tracking-widest text-muted-foreground hover:text-foreground transition-colors ml-4"
+          >
+            {language === 'en' ? 'VI' : 'EN'}
+          </button>
         </nav>
       </div>
     </header>

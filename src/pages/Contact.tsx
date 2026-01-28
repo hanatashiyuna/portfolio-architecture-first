@@ -1,10 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useContact } from '@/hooks/useContact';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 
 const Contact = () => {
@@ -29,46 +25,77 @@ const Contact = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold text-foreground mb-8">{t('contact.title')}</h1>
-      
-      <form onSubmit={handleSubmit} className="max-w-md space-y-6">
-        <div className="space-y-2">
-          <Label htmlFor="name">{t('contact.name')}</Label>
-          <Input
-            id="name"
-            value={form.name}
-            onChange={(e) => setForm({ ...form, name: e.target.value })}
-            required
-          />
-        </div>
+    <div className="px-6 md:px-12 lg:px-24 py-16">
+      <div className="max-w-2xl">
+        <p className="text-xs text-muted-foreground uppercase tracking-wide mb-4">
+          {t('contact.title')}
+        </p>
+        
+        <h1 className="editorial-large text-foreground mb-12 text-balance">
+          Have a project in mind? Let's talk.
+        </h1>
 
-        <div className="space-y-2">
-          <Label htmlFor="email">{t('contact.email')}</Label>
-          <Input
-            id="email"
-            type="email"
-            value={form.email}
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
-            required
-          />
-        </div>
+        <form onSubmit={handleSubmit} className="space-y-8">
+          <div>
+            <label 
+              htmlFor="name" 
+              className="text-xs text-muted-foreground uppercase tracking-wide block mb-3"
+            >
+              {t('contact.name')}
+            </label>
+            <input
+              id="name"
+              type="text"
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              required
+              className="w-full bg-transparent border-b border-border py-3 text-foreground focus:outline-none focus:border-foreground transition-colors"
+            />
+          </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="message">{t('contact.message')}</Label>
-          <Textarea
-            id="message"
-            value={form.message}
-            onChange={(e) => setForm({ ...form, message: e.target.value })}
-            rows={5}
-            required
-          />
-        </div>
+          <div>
+            <label 
+              htmlFor="email"
+              className="text-xs text-muted-foreground uppercase tracking-wide block mb-3"
+            >
+              {t('contact.email')}
+            </label>
+            <input
+              id="email"
+              type="email"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              required
+              className="w-full bg-transparent border-b border-border py-3 text-foreground focus:outline-none focus:border-foreground transition-colors"
+            />
+          </div>
 
-        <Button type="submit" disabled={contactMutation.isPending}>
-          {contactMutation.isPending ? t('common.loading') : t('contact.send')}
-        </Button>
-      </form>
+          <div>
+            <label 
+              htmlFor="message"
+              className="text-xs text-muted-foreground uppercase tracking-wide block mb-3"
+            >
+              {t('contact.message')}
+            </label>
+            <textarea
+              id="message"
+              value={form.message}
+              onChange={(e) => setForm({ ...form, message: e.target.value })}
+              rows={4}
+              required
+              className="w-full bg-transparent border-b border-border py-3 text-foreground focus:outline-none focus:border-foreground transition-colors resize-none"
+            />
+          </div>
+
+          <button 
+            type="submit" 
+            disabled={contactMutation.isPending}
+            className="editorial-link text-foreground text-lg mt-4"
+          >
+            {contactMutation.isPending ? t('common.loading') : t('contact.send')} →
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

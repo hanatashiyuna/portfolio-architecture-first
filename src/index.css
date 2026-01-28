@@ -138,17 +138,35 @@
     @apply scale-x-100 origin-left;
   }
 
-  .timeline-line {
-    @apply absolute left-0 top-0 bottom-0 w-px bg-border;
+  .timeline-line-gradient {
+    @apply absolute left-0 top-0 bottom-0 w-px;
+    background: linear-gradient(
+      to bottom,
+      hsl(var(--accent)) 0%,
+      hsl(var(--border)) 30%,
+      hsl(var(--border) / 0.3) 100%
+    );
   }
 
-  .timeline-dot {
-    @apply absolute -left-8 top-1 w-3 h-3 rounded-full border-2 border-foreground bg-background;
-    margin-left: -6px;
+  .timeline-dot-current {
+    @apply absolute -left-8 top-1 w-4 h-4 rounded-full bg-accent;
+    margin-left: -8px;
+    box-shadow: 0 0 0 4px hsl(var(--accent) / 0.15);
   }
 
-  .timeline-dot-active {
-    @apply bg-accent border-accent;
+  .timeline-dot-pulse {
+    @apply absolute inset-0 rounded-full bg-accent animate-ping;
+    animation-duration: 2s;
+  }
+
+  .timeline-dot-past {
+    @apply absolute -left-8 top-1 w-2.5 h-2.5 rounded-full border border-muted-foreground/30 bg-background;
+    margin-left: -5px;
+  }
+
+  .timeline-dot-origin {
+    @apply absolute left-0 top-1 w-2 h-2 rounded-full bg-muted-foreground/20;
+    margin-left: -4px;
   }
 
   .project-item {

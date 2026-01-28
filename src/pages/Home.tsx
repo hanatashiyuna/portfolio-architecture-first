@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import portraitImage from '@/assets/portrait.png';
 
 const Home = () => {
   const { t } = useTranslation();
@@ -13,12 +14,12 @@ const Home = () => {
             className="relative opacity-0 animate-fade-in"
             style={{ animationDelay: '0.3s' }}
           >
-            {/* Portrait placeholder - easy to replace with real photo */}
+            {/* Portrait */}
             <div className="aspect-[3/4] bg-muted overflow-hidden">
               <img
-                src="/placeholder.svg"
+                src={portraitImage}
                 alt="Portrait"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"
               />
             </div>
             

@@ -52,8 +52,8 @@ export const Header = () => {
           }}
           className={`editorial-link text-sm tracking-wide uppercase cursor-pointer ${
             window.location.pathname === link.to 
-              ? 'text-foreground' 
-              : 'text-muted-foreground'
+              ? 'text-foreground font-semibold' 
+              : 'text-muted-foreground font-normal'
           }`}
         >
           {link.label}

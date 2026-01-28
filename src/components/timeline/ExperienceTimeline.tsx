@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import type { Experience } from '@/types';
 
 interface ExperienceTimelineProps {
@@ -6,8 +5,6 @@ interface ExperienceTimelineProps {
 }
 
 export const ExperienceTimeline = ({ experiences }: ExperienceTimelineProps) => {
-  const { t } = useTranslation();
-
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
@@ -25,18 +22,8 @@ export const ExperienceTimeline = ({ experiences }: ExperienceTimelineProps) => 
   const totalItems = sortedExperiences.length;
 
   return (
-    <div className="relative pl-8">
-      {/* Direction indicator */}
-      <div className="flex items-center gap-2 mb-8 -ml-8">
-        <span className="text-xs font-medium text-accent uppercase tracking-widest pl-2.5">
-          Present
-        </span>
-        <div className="h-px flex-1 bg-gradient-to-r from-accent/50 to-transparent" />
-      </div>
-
-      <div className="timeline-line-gradient" />
-
-      <div className="space-y-12">
+    <div className="relative">
+      <div className="space-y-10">
         {sortedExperiences.map((exp, index) => {
           const fadeOpacity = 1 - (index / totalItems) * 0.4;
           const isCurrentRole = isActive(exp);
@@ -44,55 +31,67 @@ export const ExperienceTimeline = ({ experiences }: ExperienceTimelineProps) => 
           return (
             <div 
               key={exp.id} 
-              className="relative animate-fade-in"
+              className="grid grid-cols-[120px_24px_1fr] gap-x-4 animate-fade-in"
               style={{ 
                 opacity: fadeOpacity,
                 animationDelay: `${index * 100}ms`
               }}
             >
-              {/* Timeline dot */}
-              {isCurrentRole ? (
-                <div className="timeline-dot-current">
-                  <span className="timeline-dot-pulse" />
-                </div>
-              ) : (
-                <div 
-                  className="timeline-dot-past"
-                  style={{ opacity: fadeOpacity }}
-                />
-              )}
-
-              <div>
-                <div className="flex flex-wrap items-baseline gap-3 mb-1">
-                  <h3 className={`font-display text-xl ${
-                    isCurrentRole ? 'text-foreground' : 'text-foreground/80'
-                  }`}>
-                    {exp.position}
-                  </h3>
-                  <span className={`text-xs ${
-                    isCurrentRole 
-                      ? 'text-accent font-medium uppercase tracking-wide' 
-                      : 'text-muted-foreground'
-                  }`}>
-                    {isCurrentRole ? (
-                      <span className="inline-flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                        Now
-                      </span>
-                    ) : (
-                      `${formatDate(exp.startDate)} — ${formatDate(exp.endDate!)}`
-                    )}
+              {/* Left column: Time indicators */}
+              <div className="text-right pt-0.5">
+                {isCurrentRole ? (
+                  <span className="text-xs font-medium text-accent uppercase tracking-widest">
+                    Present
                   </span>
-                </div>
-                <p className="text-muted-foreground text-sm mb-3">
+                ) : (
+                  <div className="text-xs text-muted-foreground leading-relaxed">
+                    <div>{formatDate(exp.startDate)}</div>
+                    <div className="text-muted-foreground/50">—</div>
+                    <div>{formatDate(exp.endDate!)}</div>
+                  </div>
+                )}
+              </div>
+
+              {/* Middle column: Timeline line and dots */}
+              <div className="relative flex justify-center">
+                {/* Vertical line */}
+                <div 
+                  className="absolute top-2 bottom-0 w-px"
+                  style={{
+                    background: isCurrentRole 
+                      ? 'linear-gradient(to bottom, hsl(var(--accent)), hsl(var(--border)))'
+                      : 'hsl(var(--border) / 0.5)'
+                  }}
+                />
+                {/* Dot */}
+                {isCurrentRole ? (
+                  <div className="relative w-3 h-3 rounded-full bg-accent mt-1 z-10">
+                    <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-50" style={{ animationDuration: '2s' }} />
+                  </div>
+                ) : (
+                  <div 
+                    className="w-2 h-2 rounded-full border border-muted-foreground/30 bg-background mt-1.5 z-10"
+                    style={{ opacity: fadeOpacity }}
+                  />
+                )}
+              </div>
+
+              {/* Right column: Content */}
+              <div className="pb-2">
+                <h3 className={`font-display text-xl mb-1 ${
+                  isCurrentRole ? 'text-foreground' : 'text-foreground/80'
+                }`}>
+                  {exp.position}
+                </h3>
+                <p className="text-muted-foreground text-sm mb-2">
                   {exp.company}
                 </p>
-                <p className={`text-sm leading-relaxed mb-4 ${
+                <p className={`text-sm leading-relaxed mb-3 ${
                   isCurrentRole ? 'text-foreground/80' : 'text-foreground/60'
                 }`}>
                   {exp.description}
                 </p>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-x-4 gap-y-1">
                   {exp.technologies.map((tech) => (
                     <span
                       key={tech}
@@ -108,14 +107,17 @@ export const ExperienceTimeline = ({ experiences }: ExperienceTimelineProps) => 
             </div>
           );
         })}
-      </div>
 
-      {/* Narrative ending */}
-      <div className="relative mt-16 -ml-8 pl-8">
-        <div className="timeline-dot-origin" />
-        <p className="text-sm text-muted-foreground/60 italic font-display">
-          Where it all began — curiosity, late nights, and a lot of Stack Overflow.
-        </p>
+        {/* Narrative ending */}
+        <div className="grid grid-cols-[120px_24px_1fr] gap-x-4">
+          <div />
+          <div className="relative flex justify-center">
+            <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/20 mt-1.5" />
+          </div>
+          <p className="text-sm text-muted-foreground/60 italic font-display">
+            Where it all began — curiosity, late nights, and a lot of Stack Overflow.
+          </p>
+        </div>
       </div>
     </div>
   );

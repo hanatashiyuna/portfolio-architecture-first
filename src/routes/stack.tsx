@@ -2,6 +2,8 @@ import { createRoute } from '@tanstack/react-router';
 import { rootRoute } from './__root';
 import { api } from '@/services/api';
 import Stack from '@/pages/Stack';
+import { RouteLoadingIndicator } from '@/components/layout/RouteLoadingIndicator';
+import { RouteErrorBoundary } from '@/components/layout/RouteErrorBoundary';
 
 export const stackRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -11,4 +13,6 @@ export const stackRoute = createRoute({
     return { stack: response.data };
   },
   component: Stack,
+  pendingComponent: RouteLoadingIndicator,
+  errorComponent: ({ error }) => <RouteErrorBoundary error={error} />,
 });

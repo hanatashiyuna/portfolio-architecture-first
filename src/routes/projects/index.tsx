@@ -3,6 +3,8 @@ import { z } from 'zod';
 import { rootRoute } from '../__root';
 import { api } from '@/services/api';
 import ProjectsPage from '@/pages/Projects';
+import { RouteLoadingIndicator } from '@/components/layout/RouteLoadingIndicator';
+import { RouteErrorBoundary } from '@/components/layout/RouteErrorBoundary';
 
 // Search params schema for type-safe filtering
 const projectsSearchSchema = z.object({
@@ -34,4 +36,6 @@ export const projectsRoute = createRoute({
     return { projects };
   },
   component: ProjectsPage,
+  pendingComponent: RouteLoadingIndicator,
+  errorComponent: ({ error }) => <RouteErrorBoundary error={error} />,
 });

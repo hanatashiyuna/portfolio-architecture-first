@@ -7,15 +7,18 @@ const Stack = () => {
   const { data: stack, isLoading } = useStack();
 
   return (
-    <div className="px-6 md:px-12 lg:px-24 py-16">
-      <div className="max-w-4xl mb-16">
-        <p className="text-xs text-muted-foreground uppercase tracking-wide mb-4">
+    <div className="px-6 md:px-12 lg:px-24 py-12">
+      <div className="max-w-4xl mb-12">
+        <p className="text-xs text-muted-foreground uppercase tracking-widest mb-6">
           {t('stack.title')}
         </p>
         
-        <h1 className="editorial-large text-foreground mb-8 max-w-2xl text-balance">
-          Tools are just means to an end. Here's how I think about them.
+        <h1 className="editorial-large text-foreground mb-4 max-w-2xl text-balance">
+          These are tools I've shipped real products with.
         </h1>
+        <p className="text-muted-foreground text-base max-w-xl">
+          Tools matter less than the decisions behind them. I pick what works, not what's trending.
+        </p>
       </div>
 
       {isLoading ? (

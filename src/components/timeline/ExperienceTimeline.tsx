@@ -28,7 +28,7 @@ export const ExperienceTimeline = ({ experiences }: ExperienceTimelineProps) => 
     <div className="relative pl-8">
       {/* Direction indicator */}
       <div className="flex items-center gap-2 mb-8 -ml-8">
-        <span className="text-xs font-medium text-accent uppercase tracking-widest">
+        <span className="text-xs font-medium text-accent uppercase tracking-widest pl-2.5">
           Present
         </span>
         <div className="h-px flex-1 bg-gradient-to-r from-accent/50 to-transparent" />

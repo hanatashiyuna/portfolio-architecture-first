@@ -1,17 +1,27 @@
 import { Link, useRouterState } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '@/store/appStore';
+import { Moon, Sun } from 'lucide-react';
+import { useEffect } from 'react';
 
 export const Header = () => {
   const { t, i18n } = useTranslation();
-  const { language, setLanguage } = useAppStore();
+  const { language, setLanguage, theme, setTheme } = useAppStore();
   const routerState = useRouterState();
   const pathname = routerState.location.pathname;
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+  }, [theme]);
 
   const toggleLanguage = () => {
     const newLang = language === 'en' ? 'vi' : 'en';
     setLanguage(newLang);
     i18n.changeLanguage(newLang);
+  };
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
   const navLinks = [
@@ -47,8 +57,16 @@ export const Header = () => {
           ))}
           
           <button 
+            onClick={toggleTheme}
+            className="p-2 text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="Toggle theme"
+          >
+            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+          </button>
+          
+          <button 
             onClick={toggleLanguage}
-            className="text-xs tracking-widest text-muted-foreground hover:text-foreground transition-colors ml-4"
+            className="text-xs tracking-widest text-muted-foreground hover:text-foreground transition-colors"
           >
             {language === 'en' ? 'VI' : 'EN'}
           </button>

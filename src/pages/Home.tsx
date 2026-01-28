@@ -7,7 +7,7 @@ const Home = () => {
 
   return (
     <div className="min-h-[85vh] px-6 md:px-12 lg:px-24 py-16 lg:py-24">
-      <div className="grid grid-cols-12 gap-8 lg:gap-12 items-start">
+      <div className="grid grid-cols-12 gap-6 lg:gap-8 items-start">
         {/* Portrait - Left aligned, not centered */}
         <div className="col-span-12 lg:col-span-4 order-2 lg:order-1">
           <div 
@@ -31,12 +31,21 @@ const Home = () => {
         </div>
 
         {/* Content - Right side */}
-        <div className="col-span-12 lg:col-span-7 lg:col-start-6 order-1 lg:order-2 flex flex-col justify-center min-h-[60vh] lg:min-h-[70vh]">
-          <p 
-            className="text-muted-foreground mb-6 tracking-wide uppercase text-xs opacity-0 animate-slide-in"
+        <div className="col-span-12 lg:col-span-7 lg:col-start-5 order-1 lg:order-2 flex flex-col justify-center min-h-[60vh] lg:min-h-[70vh]">
+          {/* Status line with availability indicator */}
+          <div 
+            className="flex items-center gap-4 mb-6 opacity-0 animate-slide-in"
           >
-            Open to contracts — 2024
-          </p>
+            <p className="text-muted-foreground tracking-normal uppercase text-xs font-medium">
+              Open to contracts — 2024
+            </p>
+            <span className="hidden sm:flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="text-xs text-muted-foreground uppercase tracking-normal font-medium">
+                Available
+              </span>
+            </span>
+          </div>
           
           <h1 
             className="editorial-display text-foreground mb-8 text-balance opacity-0 animate-fade-up"
@@ -71,14 +80,6 @@ const Home = () => {
             </Link>
           </div>
         </div>
-      </div>
-      
-      {/* Status indicator */}
-      <div className="fixed bottom-8 right-8 hidden lg:flex items-center gap-3 opacity-0 animate-fade-in" style={{ animationDelay: '0.6s' }}>
-        <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-        <span className="text-xs text-muted-foreground uppercase tracking-wide">
-          Available
-        </span>
       </div>
     </div>
   );
